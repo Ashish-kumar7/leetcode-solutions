@@ -1,4 +1,4 @@
-class Solution {
+class Solution{
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB){
         ListNode * st1=headA;
