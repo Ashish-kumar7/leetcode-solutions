@@ -1,28 +1,24 @@
+
 class Solution {
 public:
     bool hasPathSum(TreeNode* root, int sum) {
-        vector<int>A;
-        int value=0;
-        tosearch(root,value,A);
-        int jj=A.size();
-        for(int i=0;i<jj;i++){   
-            if(A[i]==sum){
+        if(root==NULL){
+            return 0;
+        }
+        else{
+            int subsum=0;
+            bool ans=0;
+            subsum=sum-root->val;
+            if(subsum==0 && root->left==NULL && root->right==NULL){
                 return 1;
             }
+            if(root->left!=NULL){
+                ans=ans || hasPathSum(root->left,subsum);
+            }
+            if(root->right!=NULL){
+                ans=ans || hasPathSum(root->right,subsum);
+            }
+            return ans;
         }
-        return 0;   
-    }
-    void tosearch(TreeNode * root ,int value, vector<int>&A){
-        if(root==NULL){
-            return ;
-        }
-        value=value+root->val;
-        if(root->left==NULL && root->right==NULL){
-            A.push_back(value);
-            return ;
-        } 
-        tosearch(root->left,value,A) ;
-        tosearch(root->right,value,A);
-        return ;
     }
 };
