@@ -1,35 +1,22 @@
 class Solution {
 public:
-    TreeNode* increasingBST(TreeNode* root) {
-        
-        vector<int>A;
-        making(root,A);
-        //vector mei sare elemnts aa gye hain abhi tak.
-        
-        int start=0;
-        int end=A.size()-1;
-        return makingpart2 (A,start); 
-    }
-    
-    void making (TreeNode * root ,vector<int>&A){
-        if(root==NULL){
-            return ;
+    void inordertraversal(TreeNode * root1,TreeNode * & root2){
+        if(root1){
+            inordertraversal(root1->left,root2);
+            root2->right=root1;
+            root2->left=NULL;
+            root2=root2->right;
+            inordertraversal(root1->right,root2);
         }
-        making(root->left,A);
-        A.push_back(root->val);
-        making(root->right,A);
-        return ;
     }
-    
-    TreeNode * makingpart2(vector<int>A,int start)
-    {
-        if(start> A.size()-1){
+    TreeNode* increasingBST(TreeNode* root1) {
+        if(root1==NULL){
             return NULL;
         }
-        TreeNode * root=new TreeNode(A[start]);
-        root->right=makingpart2(A,start+1);
-        return root;
+        TreeNode * temp=new TreeNode (-1);
+        TreeNode * root2=temp;
+        inordertraversal(root1,root2);
+        root2=temp->right;
+        return root2;
     }
-    
-    
 };
