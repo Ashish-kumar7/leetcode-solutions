@@ -5,13 +5,13 @@ public:
             return 1;
         }
         int count=0;
-        int jk=num;
+        int jok=num;
         while(num>0){
             count++;
             num=num/2;
         }
         long long int cc=pow(2,count);
         int hh=cc-1;
-        return hh^jk;
+        return hh^jok;
     }
 };
